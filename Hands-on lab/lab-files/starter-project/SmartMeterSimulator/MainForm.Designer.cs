@@ -55,7 +55,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.ttDeviceStatus = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnUnregister = new System.Windows.Forms.Button();
@@ -80,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Status0)).BeginInit();
@@ -243,7 +241,7 @@
             this.lblIotHubCnString.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIotHubCnString.Location = new System.Drawing.Point(28, 9);
             this.lblIotHubCnString.Name = "lblIotHubCnString";
-            this.lblIotHubCnString.Size = new System.Drawing.Size(463, 54);
+            this.lblIotHubCnString.Size = new System.Drawing.Size(378, 45);
             this.lblIotHubCnString.TabIndex = 23;
             this.lblIotHubCnString.Text = "IoT Hub Connection String";
             // 
@@ -264,6 +262,7 @@
             this.colDeviceID,
             this.colSensorData,
             this.colDateTime});
+            this.lvSensorData.HideSelection = false;
             this.lvSensorData.Location = new System.Drawing.Point(35, 279);
             this.lvSensorData.Name = "lvSensorData";
             this.lvSensorData.ShowGroups = false;
@@ -294,7 +293,7 @@
             this.lblSensorInfo.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSensorInfo.Location = new System.Drawing.Point(47, 636);
             this.lblSensorInfo.Name = "lblSensorInfo";
-            this.lblSensorInfo.Size = new System.Drawing.Size(0, 54);
+            this.lblSensorInfo.Size = new System.Drawing.Size(0, 45);
             this.lblSensorInfo.TabIndex = 30;
             // 
             // groupBox1
@@ -317,7 +316,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(251, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(172, 38);
+            this.label3.Size = new System.Drawing.Size(134, 30);
             this.label3.TabIndex = 36;
             this.label3.Text = "< 68 degrees";
             // 
@@ -337,7 +336,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(145, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(185, 38);
+            this.label2.Size = new System.Drawing.Size(145, 30);
             this.label2.TabIndex = 34;
             this.label2.Text = "68-72 degrees";
             // 
@@ -357,7 +356,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(39, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 38);
+            this.label1.Size = new System.Drawing.Size(134, 30);
             this.label1.TabIndex = 32;
             this.label1.Text = "> 72 degrees";
             // 
@@ -371,16 +370,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(19, 19);
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Location = new System.Drawing.Point(653, 5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(92, 74);
-            this.pictureBox4.TabIndex = 32;
-            this.pictureBox4.TabStop = false;
             // 
             // groupBox2
             // 
@@ -614,13 +603,12 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(766, 692);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lvSensorData);
             this.Controls.Add(this.pStatus);
@@ -640,7 +628,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Status0)).EndInit();
@@ -685,7 +672,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ColumnHeader colDateTime;
         private System.Windows.Forms.ToolTip ttDeviceStatus;
         private System.Windows.Forms.GroupBox groupBox2;

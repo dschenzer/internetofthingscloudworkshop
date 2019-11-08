@@ -11,7 +11,6 @@ namespace SmartMeterSimulator
 {
     class DeviceManager
     {
-
         static string connectionString;
         static RegistryManager registryManager;
 
@@ -22,13 +21,13 @@ namespace SmartMeterSimulator
             connectionString = cnString;
 
             //TODO: 1.Create an instance of RegistryManager from connectionString
-            //registryManager = ...;
+            registryManager = RegistryManager.CreateFromConnectionString(connectionString);
 
             var builder = IotHubConnectionStringBuilder.Create(cnString);
 
             HostName = builder.HostName;
         }
-        
+
         /// <summary>
         /// Register a single device with the IoT hub. The device is initially registered in a
         /// disabled state.
@@ -42,17 +41,17 @@ namespace SmartMeterSimulator
             if (registryManager == null)
                 IotHubConnect(connectionString);
 
-
             //TODO: 2.Create new device
-            //Device device = ...;
+            Device device = new Device(deviceId);
 
-            //TODO: 3.Initialize device with a status of Disabled 
-            //set status here...
+            //TODO: 3.Initialize device with a status of Disabled
+            //Enabled in a subsequent step
+            device.Status = DeviceStatus.Disabled;
 
             try
             {
                 //TODO: 4.Register the new device
-                //device = await ...;
+                device = await registryManager.AddDeviceAsync(device);
             }
             catch (Exception ex)
             {
@@ -60,13 +59,13 @@ namespace SmartMeterSimulator
                     ex.Message.Contains("DeviceAlreadyExists"))
                 {
                     //TODO: 5.Device already exists, get the registered device
-                    //device = await ...;
+                    device = await registryManager.GetDeviceAsync(deviceId);
 
                     //TODO: 6.Ensure the device is disabled until Activated later
-                    //device.Status = ...;
+                    device.Status = DeviceStatus.Disabled;
 
                     //TODO: 7.Update IoT Hubs with the device status change
-                    //await ...;
+                    await registryManager.UpdateDeviceAsync(device);
                 }
                 else
                 {
@@ -87,35 +86,35 @@ namespace SmartMeterSimulator
         /// <returns></returns>
         public async static Task<bool> ActivateDeviceAsync(string connectionString, string deviceId, string deviceKey)
         {
-            //Server-side management function to enable the provisioned device 
-            //to connect to IoT Hub after it has been installed locally. 
+            //Server-side management function to enable the provisioned device
+            //to connect to IoT Hub after it has been installed locally.
             //If device id device key are valid, Activate (enable) the device.
 
             //Make sure we're connected
             if (registryManager == null)
                 IotHubConnect(connectionString);
 
-
             bool success = false;
-            Device device = null;
+            Device device;
 
             try
             {
                 //TODO: 8.Fetch the device
-                //device = await ...;
+                device = await registryManager.GetDeviceAsync(deviceId);
 
                 //TODO: 9.Verify the device keys match
+                if (deviceKey == device.Authentication.SymmetricKey.PrimaryKey)
                 {
                     //TODO: 10.Enable the device
-                    //device.Status = ...;
+                    device.Status = DeviceStatus.Enabled;
 
                     //TODO: 11.Update IoT Hubs
-                    //await ...;
+                    await registryManager.UpdateDeviceAsync(device);
 
                     success = true;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 success = false;
             }
@@ -141,13 +140,13 @@ namespace SmartMeterSimulator
             try
             {
                 //TODO: 12.Lookup the device from the registry by deviceId
-                //device = await registryManager...;
+                device = await registryManager.GetDeviceAsync(deviceId);
 
                 //TODO: 13.Disable the device
-                //device.Status = ...;
+                device.Status = DeviceStatus.Disabled;
 
-                //TODO: 14.Update the registry 
-                //await registryManager...;
+                //TODO: 14.Update the registry
+                await registryManager.UpdateDeviceAsync(device);
 
                 success = true;
             }
@@ -157,7 +156,6 @@ namespace SmartMeterSimulator
             }
 
             return success;
-
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace SmartMeterSimulator
                 IotHubConnect(connectionString);
 
             //TODO: 15.Remove the device from the Registry
-            //await registryManager...;
+            await registryManager.RemoveDeviceAsync(deviceId);
         }
 
         /// <summary>
@@ -187,14 +185,13 @@ namespace SmartMeterSimulator
             if (registryManager == null)
                 IotHubConnect(connectionString);
 
-            for(int i = 0; i <= 9; i++)
+            for (int i = 0; i <= 9; i++)
             {
                 string deviceId = "Device" + i.ToString();
 
                 //TODO: 16.Remove the device from the Registry
-                //await registryManager...;
+                await registryManager.RemoveDeviceAsync(deviceId);
             }
-
         }
     }
 }
