@@ -124,7 +124,7 @@ namespace SmartMeterSimulator
                     ReceivedTemperatureSetting = null;
                 }
 
-                // Send acknowledgement to IoT Hub that the has been successfully processed.
+                // Send acknowledgement to IoT Hub that the has been successfully processed. 
                 // The message can be safely removed from the device queue. If something happened
                 // that prevented the device app from completing the processing of the message,
                 // IoT Hub delivers it again.
