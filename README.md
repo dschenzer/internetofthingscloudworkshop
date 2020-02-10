@@ -45,14 +45,6 @@ At the end of this hands-on lab, you will be better able to build an IoT solutio
 
 Internet of Things
 
-## Related references
-
-[MCW](https://github.com/Microsoft/MCW)
-
-## Help & Support
-
-We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
-
 ***Having trouble?***
 - First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
 - Next, submit an issue with a detailed description of the problem.
